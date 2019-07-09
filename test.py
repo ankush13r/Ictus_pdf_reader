@@ -1,8 +1,10 @@
 
 
-import re
 
 
-found = "ankush Rana"
+class main:
+    
+    def __init__(self, arg):
+        self.arg= arg
 
-print(found[-1:5])
+    def 
