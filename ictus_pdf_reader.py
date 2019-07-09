@@ -1,16 +1,40 @@
-"""You must have installed pymongo, if you don't have, you can do by next command line (only linux): 
+"""You must have installed pymongo, if you don't have, you can do by next command line (just for linux): 
 $ python -m pip install pymongo
 $ python -m pip install --upgrade pymongo
-If you couldn't install by previous command line, 
+If you couldn't install by previous command line or are not using , 
 than you figure it out here: https://api.mongodb.com/python/current/installation.html
+After all must start mongo.
 """
 
 from extractPdfData import Data_extract
 import sys
 import re
 from pymongo import MongoClient
+import logging
 
+#DEBUG ,INFO, WARNING, ERROR, CRITICAL
+#----------------------------------------------------#
+#----------------logging setting---------------------#
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+#Formatter handdler
+console_formatter = logging.Formatter('%(levelname)s:%(name)s: <<%(message)s>>')
+file_formatter = logging.Formatter('%(levelname)s:%(asctime)s:%(name)s <<%(message)s>>')
+#create Handlers
+file_handler = logging.FileHandler('logTest.log')
+console_handler = logging.StreamHandler()
+#set Lever
+file_handler.setLevel(logging.DEBUG)
+console_handler.setLevel(logging.DEBUG)
+#set Formatter
+file_handler.setFormatter(file_formatter)
+console_handler.setFormatter(console_formatter)
+#add Handler
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
 
+#logger instead of logging
+#---------------logging setting--------------------#
 
 
 GENDER= {"Hombre":["una paciente","mujer","femenino","fumadora",],"Mujer":["varón","un paciente","el paciente","hombre","fumador"]}
@@ -37,7 +61,7 @@ class Data_extracted:
         return dict({"Título":self.title, "Hospital":self.hospital_name, "Médico": self.doctor, "Supervision": self.supervision,
         "Género_paciente":self.patient_gender, "Edad_paciente": self.patient_age})
 
-##########################################################
+
 
 def find_gender(anamnesis):
     lower_case_date = anamnesis.lower()
@@ -52,7 +76,11 @@ def find_gender(anamnesis):
 def find_age(anamnesis):
     matched = re.search(PATTERN_FIND_AGE, anamnesis)
     if matched:
-        return matched.group()
+        try:
+            age = int(matched.group()[:2])
+            return age
+        except ValueError:
+            pass
     else:
         return None
 
@@ -61,7 +89,6 @@ def patient_info(anamnesis):
     patient_gender = find_gender(anamnesis)
     patient_age = find_age(anamnesis)
     return patient_gender,patient_age
-
 
 #-------------------------------------------------------------#
 
@@ -112,20 +139,22 @@ def create_extracted_data_object_list(dictionary):
 
 #-------------------------Mongo-------------------------#
 def save_data_in_mongo(list_data_extracted,file_root):
-
+    found = re.search("\d{4}",file_root)
+    if found != -1:
+        col_name = "clinical_cases_"+found.group()
+    else:
+        col_name = "clinical_cases"
+        
     client = MongoClient('mongodb://localhost:27017/')
-    db = client["Ictus_clinical_case"]
-    collection = db.Clinical_cases
+    db_name = "Ictus_clinical_case"
+    db = client[db_name]
+    collection = db[col_name]
     for data in list_data_extracted:
         dictionary = data.get_dictionary()
-        if collection.find_one({"Título":dictionary.title}):
-            print(exite)
-
-        collection.insert_one(dictionary)
-    print("Saved")
-
-
-
+        if collection.find_one({"Título":data.title}):
+            print("-->> already exits in the DATA BASES: (Title: ",data.title,")")
+        else:
+            collection.insert_one(dictionary)
 
 #---------------------------------------------------------#
 def main(arguments):       
@@ -134,20 +163,18 @@ def main(arguments):
         return False
     file_root = arguments[1]
 
-    #pdf_file = open(file_root,"rb")
-    #content = Data_extract.readPDF(pdf_file)
+    
+    content = Data_extract.readPDF(file_root)
 
-    pdf_file = open(file_root,"r") #Prueba desde el fichero del texto
-    content = pdf_file.read()
+    #pdf_file = open(file_root,"r") #Prueba desde el fichero del texto
+    #content = pdf_file.read()
     content_fixedUP = Data_extract.fix_up_content(content)
     cases_list = Data_extract.split_all_cases(content_fixedUP)
     cases_dictionary = Data_extract.make_case_dict(cases_list) #title as key and other data as value
-    list_dict_cases_devided_in_paragraphs = Data_extract.split_cases_by_paragraphs(cases_dictionary)
+    list_dict_cases_divided_in_paragraphs = Data_extract.split_cases_by_paragraphs(cases_dictionary)
     
-    data_list = create_extracted_data_object_list(list_dict_cases_devided_in_paragraphs) # The object contain case information
+    data_list = create_extracted_data_object_list(list_dict_cases_divided_in_paragraphs) # The object contain case information
     save_data_in_mongo(data_list,file_root)
-
-
 
 
 if __name__== "__main__":

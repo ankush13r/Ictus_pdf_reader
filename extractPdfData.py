@@ -11,48 +11,105 @@ from pdfminer.pdfinterp import PDFResourceManager , process_pdf
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from io import StringIO
+import logging
 
-PATTERN_REPLACS_lINE_BREAK =r"((?<=[^\n])\n)|\x0c"  
-# Pattern for replace a single {line break} by a {space} because all pdf conten all data in {table format},
+#DEBUG ,INFO, WARNING, ERROR, CRITICAL
+#----------------------------------------------------#
+#----------------logging setting---------------------#
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+#Formatter handdler
+console_formatter = logging.Formatter('%(levelname)s:%(name)s: <<%(message)s>>')
+file_formatter = logging.Formatter('%(levelname)s:%(asctime)s:%(name)s <<%(message)s>>')
+#create Handlers
+file_handler = logging.FileHandler('logTest.log')
+console_handler = logging.StreamHandler()
+#set Lever
+file_handler.setLevel(logging.DEBUG)
+console_handler.setLevel(logging.DEBUG)
+#set Formatter
+file_handler.setFormatter(file_formatter)
+console_handler.setFormatter(console_formatter)
+#add Handler
+logger.addHandler(file_handler)
+logger.addHandler(console_handler)
+
+#logger instead of logging
+#---------------logging setting--------------------#
+
+
+logger.info("Creating patterns for regex.") #logging
+
+PATTERN_REPLACES_lINE_BREAK =r"((?<=[^\n])\n)|\x0c" 
+logger.info("Created -> " + PATTERN_REPLACES_lINE_BREAK) #logging
+# Pattern to replace a single {line break} by a {space} because all pdf conten all data in {table format},
 # So, if there is single line break it will findout, which we need to replace by a space.
 
 PATTERN_FIND_CASE_START_PAGE = r".*[^\.](?=\.{6,})"
-# Pattern for find indexes. In pdf all idexes finish with ...... minimum 6 point (ej: any index ...........)
+logger.info("Created -> " + PATTERN_FIND_CASE_START_PAGE) #logging
+# Pattern for finding indexes. In pdf all idexes finish with ...... minimum 6 point (ej: any index ...........)
 # The patter will just look for all lines those have this format (any index .....),
-# from those lines it will get all indices, but without any points (....)
+# from those lines it will get all indices, but without any points << .... >>
 
-PATTERN_FIND_SPACE_AFTER_INDEX = r"(?<=\.{6})\s(?=\w)"
 PATTERN_FIND_PAGE_NUMBER = r"-\s\d+\s-"
-PATTERN_FIND_WORD_SPLITED = r"- (?=\w)"
-PATTERN_FIND_MANY_SPACE = r" +|"+chr(160)+"+"
-PATTERN_RARE_CARACTERS = r"\(cid:\d*\)"
-PATTERN_FIND_HEADER = r".*CONCURSO DE CASOS CLÍNICOS.*20\d\d"
+logger.info("Created -> " + PATTERN_FIND_PAGE_NUMBER)  #logging
+# Pattern for finding page number, it must be in format <<- ## - >> .
 
+PATTERN_FIND_WORD_DIVIDED = r"- (?=\w)"
+logger.info("Created -> " + PATTERN_FIND_WORD_DIVIDED) #logging
+# Pattern for find words those are divided by (-). << Wor- d >>. 
+# Because, so many words are written at the end of the line with - and continued in next line
+
+PATTERN_FIND_MANY_SPACE = r" +|"+chr(160)+"+"
+logger.info("Created -> " + PATTERN_FIND_MANY_SPACE) #logging
+# Pattern for finding more than one space repeated. chr(160) is also a rare none printable character found in pdf
+
+PATTERN_RARE_CARACTERS = r"\(cid:\d*\)"
+logger.info("Created -> " + PATTERN_RARE_CARACTERS) #logging
+#Pattern for find (cid:##). Because PDF CONVERTER  converts graphic in a code like (cid:##)
+
+PATTERN_FIND_HEADER = r".*CONCURSO DE CASOS CLÍNICOS.*20\d\d"
+logger.info("Created -> " + PATTERN_FIND_HEADER) #logging
+#Pattern for finding pdf header like (CONCURSO DE CASOS CLÍNICOS.*2015)
+
+logger.info("Creating object type tuple (case_paragraphs)") #logging
 case_paragraphs = ("Anamnesis","Exploración física","Pruebas complementarias","Diagnóstico","Tratamiento","Evolución", "DISCUSIÓN","BIBLIOGRAFÍA","Figura 1.")
 
 class Data_extract:
     def readPDF(file_root):
-        pdf_file = open(file_root,"rb") ###
-        content = pdf_file.read()
+        pdf_file = open(file_root,"rb")
+        logger.info("PDF file opened as binary (rb).") #logging
         resource_maneger = PDFResourceManager()
+        logger.info("Created resource maneger for Text Converter.") #logging
         ret_string = StringIO()
-        laparams = LAParams()
+        logger.info("Created StringIO as ret_string to save pdf text.") #logging
+        laparams = LAParams(line_overlap=0.5, char_margin=1.0, line_margin=0.5, word_margin=0.1)
+        logger.info("Created LAParams as laparams for definig character, word and line margin .") #logging
         device = TextConverter(resource_maneger,ret_string, laparams=laparams)      
+        logger.info("Created TextConverter as device.") #logging
         process_pdf(resource_maneger,device,pdf_file)
+        logger.info("Processed Converted PDF File into text .") #logging
         device.close()
+        logger.info("Device closed.") #logging
         content = ret_string.getvalue()
+        logger.info("Saved all conteint as string into a varibale called content.") #logging      
         ret_string.close()
+        logger.info("ret_string closed.") #logging
         return content
 
-    def fix_up_content(content):      
-        content_temp = re.sub(PATTERN_REPLACS_lINE_BREAK,' ',content) #Replace line break by a space.
+    def fix_up_content(content):
+        logger.info("Fixing up all content") #logging
+        content_temp = re.sub(PATTERN_REPLACES_lINE_BREAK,' ',content) #Replace line break by a space.
+        logger.info("Replaced some line breaks by space") #logging
         content_temp = re.sub(PATTERN_FIND_MANY_SPACE,' ',content_temp) #Strip all spaces those are repeated.
-        content_temp = re.sub(PATTERN_FIND_SPACE_AFTER_INDEX,"\n",content_temp) #
+        logger.info("Deleted all repeated space") #logging
+
         content_temp = re.sub(PATTERN_FIND_MANY_SPACE,' ',content_temp) #Strip all spaces those are repeated, again
         content_temp = re.sub(PATTERN_RARE_CARACTERS,'',content_temp) # Deleting all rare caracter as  (cid:32)
         content_temp = re.sub(PATTERN_FIND_PAGE_NUMBER,'',content_temp)
         content_temp = re.sub(PATTERN_FIND_HEADER,'',content_temp)
-        final_content = re.sub(PATTERN_FIND_WORD_SPLITED,'',content_temp)
+        final_content = re.sub(PATTERN_FIND_WORD_DIVIDED,'',content_temp)
+
         out_put = open("data_parsed.txt","w")
         out_put.write(final_content)
         return final_content

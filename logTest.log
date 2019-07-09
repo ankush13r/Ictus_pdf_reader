@@ -1,0 +1,155 @@
+2019-07-09 16:37:03,003:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 16:38:40,740:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 16:39:39,914:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 16:39:39,914:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 16:39:39,914:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 16:39:39,914:extractPdfData:INFO:Created -> (?<=\.{6})\s(?=\w)
+2019-07-09 16:43:25,533:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 16:43:25,534:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 16:43:25,534:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 16:43:25,534:extractPdfData:INFO:Created -> (?<=\.{6})\s(?=\w)
+2019-07-09 17:18:16,404:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 17:18:16,404:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 17:18:16,404:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 17:18:16,404:extractPdfData:INFO:Created -> -\s\d+\s-
+2019-07-09 17:18:16,404:extractPdfData:INFO:Created -> - (?=\w)
+2019-07-09 17:18:16,404:extractPdfData:INFO:Created ->  +| +
+2019-07-09 17:18:16,404:extractPdfData:INFO:Created -> \(cid:\d*\)
+2019-07-09 17:18:16,404:extractPdfData:INFO:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+2019-07-09 17:18:16,404:extractPdfData:INFO:Creating object type tuple (case_paragraphs)
+2019-07-09 17:18:49,902:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 17:18:49,902:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 17:18:49,902:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 17:18:49,902:extractPdfData:INFO:Created -> -\s\d+\s-
+2019-07-09 17:18:49,902:extractPdfData:INFO:Created -> - (?=\w)
+2019-07-09 17:18:49,902:extractPdfData:INFO:Created ->  +| +
+2019-07-09 17:18:49,902:extractPdfData:INFO:Created -> \(cid:\d*\)
+2019-07-09 17:18:49,902:extractPdfData:INFO:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+2019-07-09 17:18:49,902:extractPdfData:INFO:Creating object type tuple (case_paragraphs)
+2019-07-09 17:19:00,621:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 17:19:00,622:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 17:19:00,622:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 17:19:00,622:extractPdfData:INFO:Created -> -\s\d+\s-
+2019-07-09 17:19:00,622:extractPdfData:INFO:Created -> - (?=\w)
+2019-07-09 17:19:00,622:extractPdfData:INFO:Created ->  +| +
+2019-07-09 17:19:00,622:extractPdfData:INFO:Created -> \(cid:\d*\)
+2019-07-09 17:19:00,622:extractPdfData:INFO:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+2019-07-09 17:19:00,622:extractPdfData:INFO:Creating object type tuple (case_paragraphs)
+2019-07-09 17:19:45,078:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 17:19:45,078:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 17:19:45,078:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 17:19:45,078:extractPdfData:INFO:Created -> -\s\d+\s-
+2019-07-09 17:19:45,078:extractPdfData:INFO:Created -> - (?=\w)
+2019-07-09 17:19:45,078:extractPdfData:INFO:Created ->  +| +
+2019-07-09 17:19:45,078:extractPdfData:INFO:Created -> \(cid:\d*\)
+2019-07-09 17:19:45,078:extractPdfData:INFO:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+2019-07-09 17:19:45,078:extractPdfData:INFO:Creating object type tuple (case_paragraphs)
+2019-07-09 17:19:45,125:extractPdfData:INFO:PDF file opened as binary (rb)
+2019-07-09 17:19:45,125:extractPdfData:INFO:Created resource maneger for Text Converter 
+2019-07-09 17:19:45,125:extractPdfData:INFO:Created StringIO as ret_string 
+2019-07-09 17:19:45,125:extractPdfData:INFO:Created StringIO as ret_string 
+2019-07-09 17:22:54,122:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 17:22:54,122:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 17:22:54,122:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 17:22:54,122:extractPdfData:INFO:Created -> -\s\d+\s-
+2019-07-09 17:22:54,122:extractPdfData:INFO:Created -> - (?=\w)
+2019-07-09 17:22:54,122:extractPdfData:INFO:Created ->  +| +
+2019-07-09 17:22:54,122:extractPdfData:INFO:Created -> \(cid:\d*\)
+2019-07-09 17:22:54,122:extractPdfData:INFO:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+2019-07-09 17:22:54,122:extractPdfData:INFO:Creating object type tuple (case_paragraphs)
+2019-07-09 17:22:54,170:extractPdfData:INFO:PDF file opened as binary (rb)
+2019-07-09 17:22:54,170:extractPdfData:INFO:Created resource maneger for Text Converter 
+2019-07-09 17:22:54,170:extractPdfData:INFO:Created StringIO as ret_string 
+2019-07-09 17:22:54,170:extractPdfData:INFO:Created StringIO as ret_string 
+2019-07-09 17:24:09,131:extractPdfData:INFO:Creating patterns for regex.
+2019-07-09 17:24:09,131:extractPdfData:INFO:Created -> ((?<=[^\n])\n)|\x0c
+2019-07-09 17:24:09,131:extractPdfData:INFO:Created -> .*[^\.](?=\.{6,})
+2019-07-09 17:24:09,132:extractPdfData:INFO:Created -> -\s\d+\s-
+2019-07-09 17:24:09,132:extractPdfData:INFO:Created -> - (?=\w)
+2019-07-09 17:24:09,132:extractPdfData:INFO:Created ->  +| +
+2019-07-09 17:24:09,132:extractPdfData:INFO:Created -> \(cid:\d*\)
+2019-07-09 17:24:09,132:extractPdfData:INFO:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+2019-07-09 17:24:09,132:extractPdfData:INFO:Creating object type tuple (case_paragraphs)
+2019-07-09 17:24:09,195:extractPdfData:INFO:PDF file opened as binary (rb)
+2019-07-09 17:24:09,195:extractPdfData:INFO:Created resource maneger for Text Converter 
+2019-07-09 17:24:09,195:extractPdfData:INFO:Created StringIO as ret_string 
+2019-07-09 17:24:09,195:extractPdfData:INFO:Created StringIO as ret_string 
+INFO:2019-07-09 17:26:46,491:extractPdfData:Creating patterns for regex.
+INFO:2019-07-09 17:26:46,491:extractPdfData:Created -> ((?<=[^\n])\n)|\x0c
+INFO:2019-07-09 17:26:46,491:extractPdfData:Created -> .*[^\.](?=\.{6,})
+INFO:2019-07-09 17:26:46,491:extractPdfData:Created -> -\s\d+\s-
+INFO:2019-07-09 17:26:46,491:extractPdfData:Created -> - (?=\w)
+INFO:2019-07-09 17:26:46,491:extractPdfData:Created ->  +| +
+INFO:2019-07-09 17:26:46,491:extractPdfData:Created -> \(cid:\d*\)
+INFO:2019-07-09 17:26:46,492:extractPdfData:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+INFO:2019-07-09 17:26:46,492:extractPdfData:Creating object type tuple (case_paragraphs)
+INFO:2019-07-09 17:26:46,544:extractPdfData:PDF file opened as binary (rb)
+INFO:2019-07-09 17:26:46,544:extractPdfData:Created resource maneger for Text Converter 
+INFO:2019-07-09 17:26:46,544:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:26:46,544:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:26:51,878:extractPdfData:Creating patterns for regex.
+INFO:2019-07-09 17:26:51,878:extractPdfData:Created -> ((?<=[^\n])\n)|\x0c
+INFO:2019-07-09 17:26:51,878:extractPdfData:Created -> .*[^\.](?=\.{6,})
+INFO:2019-07-09 17:26:51,878:extractPdfData:Created -> -\s\d+\s-
+INFO:2019-07-09 17:26:51,878:extractPdfData:Created -> - (?=\w)
+INFO:2019-07-09 17:26:51,878:extractPdfData:Created ->  +| +
+INFO:2019-07-09 17:26:51,878:extractPdfData:Created -> \(cid:\d*\)
+INFO:2019-07-09 17:26:51,879:extractPdfData:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+INFO:2019-07-09 17:26:51,879:extractPdfData:Creating object type tuple (case_paragraphs)
+INFO:2019-07-09 17:26:51,925:extractPdfData:PDF file opened as binary (rb)
+INFO:2019-07-09 17:26:51,925:extractPdfData:Created resource maneger for Text Converter 
+INFO:2019-07-09 17:26:51,925:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:26:51,925:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:26:53,218:extractPdfData:Creating patterns for regex.
+INFO:2019-07-09 17:26:53,218:extractPdfData:Created -> ((?<=[^\n])\n)|\x0c
+INFO:2019-07-09 17:26:53,218:extractPdfData:Created -> .*[^\.](?=\.{6,})
+INFO:2019-07-09 17:26:53,218:extractPdfData:Created -> -\s\d+\s-
+INFO:2019-07-09 17:26:53,218:extractPdfData:Created -> - (?=\w)
+INFO:2019-07-09 17:26:53,218:extractPdfData:Created ->  +| +
+INFO:2019-07-09 17:26:53,218:extractPdfData:Created -> \(cid:\d*\)
+INFO:2019-07-09 17:26:53,218:extractPdfData:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+INFO:2019-07-09 17:26:53,218:extractPdfData:Creating object type tuple (case_paragraphs)
+INFO:2019-07-09 17:26:53,264:extractPdfData:PDF file opened as binary (rb)
+INFO:2019-07-09 17:26:53,264:extractPdfData:Created resource maneger for Text Converter 
+INFO:2019-07-09 17:26:53,264:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:26:53,264:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:29:54,500:extractPdfData:Creating patterns for regex.
+INFO:2019-07-09 17:29:54,500:extractPdfData:Created -> ((?<=[^\n])\n)|\x0c
+INFO:2019-07-09 17:29:54,500:extractPdfData:Created -> .*[^\.](?=\.{6,})
+INFO:2019-07-09 17:29:54,500:extractPdfData:Created -> -\s\d+\s-
+INFO:2019-07-09 17:29:54,500:extractPdfData:Created -> - (?=\w)
+INFO:2019-07-09 17:29:54,500:extractPdfData:Created ->  +| +
+INFO:2019-07-09 17:29:54,500:extractPdfData:Created -> \(cid:\d*\)
+INFO:2019-07-09 17:29:54,501:extractPdfData:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+INFO:2019-07-09 17:29:54,501:extractPdfData:Creating object type tuple (case_paragraphs)
+INFO:2019-07-09 17:29:54,546:extractPdfData:PDF file opened as binary (rb)
+INFO:2019-07-09 17:29:54,546:extractPdfData:Created resource maneger for Text Converter 
+INFO:2019-07-09 17:29:54,546:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:29:54,546:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:33:54,008:extractPdfData:Creating patterns for regex.
+INFO:2019-07-09 17:33:54,008:extractPdfData:Created -> ((?<=[^\n])\n)|\x0c
+INFO:2019-07-09 17:33:54,008:extractPdfData:Created -> .*[^\.](?=\.{6,})
+INFO:2019-07-09 17:33:54,008:extractPdfData:Created -> -\s\d+\s-
+INFO:2019-07-09 17:33:54,008:extractPdfData:Created -> - (?=\w)
+INFO:2019-07-09 17:33:54,008:extractPdfData:Created ->  +| +
+INFO:2019-07-09 17:33:54,008:extractPdfData:Created -> \(cid:\d*\)
+INFO:2019-07-09 17:33:54,008:extractPdfData:Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d
+INFO:2019-07-09 17:33:54,008:extractPdfData:Creating object type tuple (case_paragraphs)
+INFO:2019-07-09 17:33:54,055:extractPdfData:PDF file opened as binary (rb)
+INFO:2019-07-09 17:33:54,055:extractPdfData:Created resource maneger for Text Converter 
+INFO:2019-07-09 17:33:54,055:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:33:54,055:extractPdfData:Created StringIO as ret_string 
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Creating patterns for regex.>>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Created -> ((?<=[^\n])\n)|\x0c>>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Created -> .*[^\.](?=\.{6,})>>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Created -> -\s\d+\s->>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Created -> - (?=\w)>>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Created ->  +| +>>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Created -> \(cid:\d*\)>>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Created -> .*CONCURSO DE CASOS CLÍNICOS.*20\d\d>>
+INFO:2019-07-09 17:41:01,904:extractPdfData <<Creating object type tuple (case_paragraphs)>>
+INFO:2019-07-09 17:41:01,944:extractPdfData <<PDF file opened as binary (rb).>>
+INFO:2019-07-09 17:41:01,944:extractPdfData <<Created resource maneger for Text Converter.>>
+INFO:2019-07-09 17:41:01,944:extractPdfData <<Created StringIO as ret_string to save pdf text.>>
+INFO:2019-07-09 17:41:01,944:extractPdfData <<Created LAParams as laparams for definig character, word and line margin .>>
+INFO:2019-07-09 17:41:01,944:extractPdfData <<Created TextConverter as device.>>
