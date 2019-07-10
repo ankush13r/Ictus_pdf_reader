@@ -1,7 +1,6 @@
 
 from pymongo import MongoClient
 from pprint import pprint
-
 import logging
 
 #DEBUG ,INFO, WARNING, ERROR, CRITICAL
@@ -10,8 +9,8 @@ import logging
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 #Formatter handdler
-console_formatter = logging.Formatter('%(levelname)s:%(name)s: <<%(message)s>>')
-file_formatter = logging.Formatter('%(levelname)s:%(asctime)s: <<%(message)s>>')
+console_formatter = logging.Formatter('%(levelname)s:%(name)s: << %(message)s >>')
+file_formatter = logging.Formatter('%(levelname)s:%(asctime)s:%(name)s << %(message)s >>')
 #create Handlers
 file_handler = logging.FileHandler('logTest.log')
 console_handler = logging.StreamHandler()
@@ -65,7 +64,6 @@ class Mongo:
             -> value_to_sortBY: Must be integer (1): ascending, (-1): descending 
     """
     def get_all_data(self,sort_key,sort_value):
-
         sort_key,sort_value = self.__valid_sort_key(sort_key,sort_value,"None")
         cursor = self.collection.find().sort(sort_key,sort_value)
         self.__cursor_len(cursor)
@@ -93,7 +91,7 @@ class Mongo:
         return cursor
 
     """
-        get_data_by_key: This method return a cursor of specific data found by condition.
+        get_data_in_interval: This method return a cursor of specific data found by condition.
         It receive two 5 arguments, 3 of them are required.
         arguments: 
             get_data_by_key(key, start_value, end_value, key_to_sortBy, value_to_sortBy)
@@ -108,7 +106,7 @@ class Mongo:
             start = int(value1)
             end = int(value2)           
         except:
-            print("Values must be Integer!\n")
+            logger.error("Values must be Integer!\n")
             return None
         sort_key,sort_value = self.__valid_sort_key(sort_key,sort_value,key)
         cursor = self.collection.find({key:{"$gte": start,"$lte": end}}).sort(sort_key,sort_value)
